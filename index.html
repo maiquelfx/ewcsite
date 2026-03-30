@@ -1219,6 +1219,218 @@
       </div>
     </div>
   </section>
+  
+  
+  
+  
+  
+
+
+
+<!-- ROI SECTION -->
+<section class="section" id="para-quem">
+  <span class="section-tag">Para quem mais faz diferença</span>
+  <h2 class="section-h2">Aprenda o inglês certo.<br><em>Mais rápido do que você imagina.</em></h2>
+  <p class="section-sub">Quando o conteúdo é do seu setor, você absorve em semanas o que levaria meses num curso genérico.</p>
+
+  <style>
+*{box-sizing:border-box;margin:0;padding:0}
+.roi-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;padding:16px 0}
+
+.roi-card{border-radius:14px;padding:1.75rem 1.25rem 1.5rem;display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;overflow:hidden}
+
+.roi-card.c1{background:linear-gradient(155deg,#0d0d1a 0%,#090910 100%);--clr:127,119,221;--clr2:160,150,255}
+.roi-card.c2{background:linear-gradient(155deg,#0a140f 0%,#060d08 100%);--clr:29,158,117;--clr2:77,201,160}
+.roi-card.c3{background:linear-gradient(155deg,#160e0a 0%,#0f0806 100%);--clr:216,90,48;--clr2:240,128,96}
+.roi-card.c4{background:linear-gradient(155deg,#13150a 0%,#0d0f06 100%);--clr:190,170,40;--clr2:212,194,74}
+.roi-card.c5{background:linear-gradient(155deg,#130a10 0%,#0d060a 100%);--clr:210,80,130;--clr2:224,112,154}
+.roi-card.c6{background:linear-gradient(155deg,#09110f 0%,#060c0a 100%);--clr:40,180,190;--clr2:64,200,212}
+
+/* border layer via pseudo */
+.roi-card::before{
+  content:'';position:absolute;inset:0;border-radius:14px;
+  padding:1px;
+  background:linear-gradient(135deg,rgba(var(--clr),.15),rgba(var(--clr),.04) 40%,rgba(var(--clr),.04) 60%,rgba(var(--clr),.15));
+  -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;
+  pointer-events:none;
+}
+
+/* traveling light conic sweep */
+.roi-card::after{
+  content:'';position:absolute;
+  width:200%;height:200%;
+  top:-50%;left:-50%;
+  border-radius:50%;
+  background:conic-gradient(
+    transparent 0deg,
+    rgba(var(--clr2),.0) 60deg,
+    rgba(var(--clr2),.65) 120deg,
+    rgba(var(--clr2),.9) 135deg,
+    rgba(var(--clr2),.65) 150deg,
+    rgba(var(--clr2),.0) 210deg,
+    transparent 360deg
+  );
+  animation:border-spin 4s linear infinite;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;
+  padding:1px;
+  pointer-events:none;
+}
+.roi-card.c1::after{animation-duration:4s}
+.roi-card.c2::after{animation-duration:4.6s;animation-delay:-.8s}
+.roi-card.c3::after{animation-duration:3.8s;animation-delay:-1.4s}
+.roi-card.c4::after{animation-duration:5s;animation-delay:-2s}
+.roi-card.c5::after{animation-duration:4.2s;animation-delay:-0.5s}
+.roi-card.c6::after{animation-duration:3.6s;animation-delay:-1.8s}
+
+@keyframes border-spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+
+.roi-card:hover::after{
+  background:conic-gradient(
+    transparent 0deg,
+    rgba(var(--clr2),.0) 40deg,
+    rgba(var(--clr2),.9) 100deg,
+    rgba(var(--clr2),1) 120deg,
+    rgba(var(--clr2),.9) 140deg,
+    rgba(var(--clr2),.0) 180deg,
+    transparent 360deg
+  );
+  animation-duration:1.8s!important;
+}
+.roi-card:hover{box-shadow:0 0 28px rgba(var(--clr),.18),0 0 60px rgba(var(--clr),.07)}
+
+.roi-icon-wrap{position:relative;width:60px;height:60px;display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem;flex-shrink:0;z-index:1}
+.roi-icon-ring{position:absolute;inset:0;border-radius:50%;border:1px solid rgba(var(--clr),.55);animation:roi-pulse 2.8s ease-in-out infinite}
+.roi-icon-ring2{position:absolute;inset:-9px;border-radius:50%;border:1px solid rgba(var(--clr),.15);opacity:0;animation:roi-pulse2 2.8s ease-in-out infinite}
+.roi-icon-bg{position:absolute;inset:0;border-radius:50%;background:rgba(var(--clr),.1)}
+.roi-icon-wrap svg{width:22px;height:22px;fill:none;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;position:relative;z-index:1;stroke:rgba(var(--clr2),1)}
+@keyframes roi-pulse{0%{transform:scale(.92);opacity:.6}50%{transform:scale(1.08);opacity:1}100%{transform:scale(.92);opacity:.6}}
+@keyframes roi-pulse2{0%{transform:scale(.88);opacity:0}50%{transform:scale(1.12);opacity:.5}100%{transform:scale(.88);opacity:0}}
+
+.roi-card-name-box{
+  display:inline-flex;align-items:center;justify-content:center;
+  background:rgba(var(--clr),.13);
+  border:1px solid rgba(var(--clr),.3);
+  border-radius:6px;padding:5px 12px;margin-bottom:1rem;
+  position:relative;z-index:1;
+}
+.roi-card-name{font-size:11px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:rgba(var(--clr2),.9);line-height:1}
+
+.roi-card-stat{font-size:38px;font-weight:600;line-height:1;margin-bottom:5px;letter-spacing:-0.03em;color:rgba(var(--clr2),1);position:relative;z-index:1}
+.roi-card-stat-label{font-size:11px;color:rgba(255,255,255,.35);margin-bottom:1.25rem;line-height:1.4;position:relative;z-index:1}
+.roi-card-divider{width:36px;height:1px;background:rgba(var(--clr),.2);margin:0 auto 1.1rem;position:relative;z-index:1}
+.roi-card-copy{font-size:14px;color:rgba(255,255,255,.5);line-height:1.75;position:relative;z-index:1}
+@media(max-width:768px){
+  .roi-grid{ grid-template-columns: repeat(2, minmax(0,1fr)); gap: 10px; }
+  .roi-card{ padding: 1.5rem 1rem 1.25rem; }
+  .roi-card-stat{ font-size: 32px; }
+  .roi-card-copy{ font-size: 13px; }
+}
+@media(max-width:480px){
+  .roi-grid{ grid-template-columns: 1fr; gap: 10px; }
+  .roi-card{ padding: 1.5rem 1.25rem; }
+  .roi-card-stat{ font-size: 36px; }
+  .roi-card-copy{ font-size: 14px; }
+}
+</style>
+
+<div class="roi-grid">
+
+  <div class="roi-card c1">
+    <div class="roi-icon-wrap">
+      <div class="roi-icon-bg"></div><div class="roi-icon-ring"></div><div class="roi-icon-ring2"></div>
+      <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+    </div>
+    <div class="roi-card-name-box"><span class="roi-card-name">Tecnologia &amp; dev</span></div>
+    <div class="roi-card-stat">2–3×</div>
+    <div class="roi-card-stat-label">acesso a vagas globais e remotas</div>
+    <div class="roi-card-divider"></div>
+    <div class="roi-card-copy">Code reviews, standups, documentação — o inglês técnico que você usa todo dia, não frases de turismo.</div>
+  </div>
+
+  <div class="roi-card c2">
+    <div class="roi-icon-wrap">
+      <div class="roi-icon-bg"></div><div class="roi-icon-ring"></div><div class="roi-icon-ring2"></div>
+      <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+    </div>
+    <div class="roi-card-name-box"><span class="roi-card-name">Marketing &amp; growth</span></div>
+    <div class="roi-card-stat">Global</div>
+    <div class="roi-card-stat-label">ferramentas e benchmarks são em inglês</div>
+    <div class="roi-card-divider"></div>
+    <div class="roi-card-copy">Pare de esperar a tradução. Quem lê os originais chega primeiro e toma as melhores decisões.</div>
+  </div>
+
+  <div class="roi-card c3">
+    <div class="roi-icon-wrap">
+      <div class="roi-icon-bg"></div><div class="roi-icon-ring"></div><div class="roi-icon-ring2"></div>
+      <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+    </div>
+    <div class="roi-card-name-box"><span class="roi-card-name">Vendas &amp; negócios</span></div>
+    <div class="roi-card-stat">+30%</div>
+    <div class="roi-card-stat-label">remuneração em cargos bilíngues</div>
+    <div class="roi-card-divider"></div>
+    <div class="roi-card-copy">Pitch, objeção, fechamento — as situações reais de vendas em inglês, não vocabulário fora de contexto.</div>
+  </div>
+
+  <div class="roi-card c4">
+    <div class="roi-icon-wrap">
+      <div class="roi-icon-bg"></div><div class="roi-icon-ring"></div><div class="roi-icon-ring2"></div>
+      <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+    </div>
+    <div class="roi-card-name-box"><span class="roi-card-name">Finanças &amp; investimentos</span></div>
+    <div class="roi-card-stat">+40%</div>
+    <div class="roi-card-stat-label">salário em fintechs e bancos globais</div>
+    <div class="roi-card-divider"></div>
+    <div class="roi-card-copy">Earnings calls, compliance, relatórios — o inglês financeiro que separa analistas locais de globais.</div>
+  </div>
+
+  <div class="roi-card c5">
+    <div class="roi-icon-wrap">
+      <div class="roi-icon-bg"></div><div class="roi-icon-ring"></div><div class="roi-icon-ring2"></div>
+      <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+    </div>
+    <div class="roi-card-name-box"><span class="roi-card-name">Direito internacional</span></div>
+    <div class="roi-card-stat">Contratos</div>
+    <div class="roi-card-stat-label">M&amp;A, arbitragem e compliance</div>
+    <div class="roi-card-divider"></div>
+    <div class="roi-card-copy">Uma cláusula mal lida custa caro. Vocabulário jurídico real, não o inglês básico do app de idiomas.</div>
+  </div>
+
+  <div class="roi-card c6">
+    <div class="roi-icon-wrap">
+      <div class="roi-icon-bg"></div><div class="roi-icon-ring"></div><div class="roi-icon-ring2"></div>
+      <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+    </div>
+    <div class="roi-card-name-box"><span class="roi-card-name">Executivos &amp; C-level</span></div>
+    <div class="roi-card-stat">Board</div>
+    <div class="roi-card-stat-label">reuniões, relatórios e decisões globais</div>
+    <div class="roi-card-divider"></div>
+    <div class="roi-card-copy">Para quem já chegou ao topo, fluência real é o que abre o mercado internacional — não só o local.</div>
+  </div>
+
+</div>
+
+
+  <div class="hero-actions" style="margin-top:48px">
+    <a href="https://app.ewc.com.br" class="btn-hero btn-hero-solid" target="_blank">Escolha sua área e comece →</a>
+    <a href="#precos" class="btn-hero btn-hero-outline">Ver planos</a>
+  </div>
+
+</section>
+
+
+
+
+<!--CARDS -->
+
+
+
+
+
+
 
   <!-- FAQ -->
   <section class="faq-section" id="faq">
@@ -1330,7 +1542,8 @@
       <li><a href="#depoimentos">Depoimentos</a></li>
       <li><a href="#faq">FAQ</a></li>
       <li><a href="https://app.ewc.com.br" target="_blank" rel="noopener noreferrer">Entrar</a></li>
-      <li><a href="/cdn-cgi/l/email-protection#462b272f3733232a062f2768363429682434">Contato</a></li>
+	  <li><a href="https://ia.pro.br" target="_blank" rel="noopener noreferrer">IA PRO</a></li>
+      <li><a href="https://wa.me/5521976950954?text=Olá%2C%20quero%20contratar%20um%20plano%20da%20EWC" target="_blank">Contato</a></li>
     </ul>
     <div class="counter">
       <span>Visitantes:</span>
