@@ -940,6 +940,104 @@
       color: var(--ink2);
       line-height: 1.6;
     }
+
+    /* ── SOBRE ── */
+    .sobre-section {
+      padding: 120px 40px;
+      max-width: 1100px;
+      margin: 0 auto;
+      box-sizing: border-box;
+      width: 100%;
+    }
+    .sobre-inner {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .sobre-left {}
+    .sobre-badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid rgba(232,82,26,0.25);
+      background: rgba(232,82,26,0.06);
+      padding: 5px 14px;
+      border-radius: 99px;
+      margin-bottom: 20px;
+    }
+    .sobre-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      color: var(--ink);
+      margin-bottom: 16px;
+    }
+    .sobre-title em { font-style: italic; color: var(--accent); }
+    .sobre-subtitle {
+      font-size: 14px;
+      color: var(--ink2);
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+    .sobre-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .sobre-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink2);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .sobre-link:hover { color: var(--accent); }
+    .sobre-link::before {
+      content: '→';
+      color: var(--accent);
+    }
+    .sobre-right {}
+    .sobre-text {
+      font-size: 16px;
+      color: var(--ink2);
+      line-height: 1.8;
+      margin-bottom: 28px;
+    }
+    .sobre-text strong { color: var(--ink); font-weight: 600; }
+    .sobre-divider {
+      height: 1px;
+      background: var(--line);
+      margin: 36px 0;
+    }
+    .sobre-autor-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink2);
+      margin-bottom: 12px;
+      opacity: 0.6;
+    }
+    .sobre-autor-bio {
+      font-size: 14px;
+      color: var(--ink2);
+      line-height: 1.75;
+    }
+    @media (max-width: 900px) {
+      .sobre-inner { grid-template-columns: 1fr; gap: 40px; }
+      .sobre-section { padding: 80px 20px; }
+    }
   </style>
 </head>
 <body>
@@ -951,6 +1049,7 @@
       <li><a href="#precos" onclick="closeMenu()">Planos</a></li>
       <li><a href="#depoimentos" onclick="closeMenu()">Depoimentos</a></li>
       <li><a href="#faq" onclick="closeMenu()">FAQ</a></li>
+      <li><a href="#sobre" onclick="closeMenu()">Sobre</a></li>
       <li class="nav-mobile-only"><a href="https://app.ewc.com.br" target="_blank" onclick="closeMenu()">Entrar</a></li>
     </ul>
     <div class="nav-actions">
@@ -1164,6 +1263,75 @@ canvas.bc{position:absolute;inset:-3px;width:calc(100% + 6px);height:calc(100% +
 .card-shell:hover .roi-card-divider{width:60px;background:rgba(var(--clr),.6)}
 .roi-card-copy{font-size:13.5px;color:rgba(255,255,255,.48);line-height:1.75;transition:color .3s}
 .card-shell:hover .roi-card-copy{color:rgba(255,255,255,.7)}
+
+
+
+
+/* Estilos para a Foto do Autor */
+    .sobre-foto-wrapper {
+      margin-top: 48px; /* Dá um respiro entre os links e a foto */
+    }
+    .sobre-foto {
+      width: 100%;
+      max-width: 280px; /* Tamanho elegante, não fica gigante */
+      border-radius: 16px; /* Segue o padrão arredondado dos seus cards */
+      border: 1px solid var(--line);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+    .sobre-foto:hover {
+      transform: translateY(-4px);
+      border-color: rgba(232,82,26,0.3); /* Acende levemente a borda com a cor accent no hover */
+    }
+
+    /* Estilos para os links dentro do texto longo */
+    .sobre-inline-link {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.2s, text-decoration 0.2s;
+    }
+    .sobre-inline-link:hover {
+      color: var(--accent2);
+      text-decoration: underline;
+    }
+	
+	/* Ajustes para suportar foto no Avatar */
+    .author-avatar {
+      width: 48px; /* Aumentei levemente para a foto ficar mais visível */
+      height: 48px;
+      border-radius: 50%;
+      background: var(--glass); /* Fundo neutro caso a imagem demore a carregar */
+      object-fit: cover; /* ESSENCIAL: Garante que a foto não fique esticada */
+      border: 2px solid transparent;
+      flex-shrink: 0;
+      transition: border-color 0.3s ease;
+    }
+
+    /* Estrutura do link do LinkedIn */
+    .testimonial-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none; /* Remove o sublinhado padrão do link */
+      transition: opacity 0.2s;
+    }
+
+    .author-name {
+      font-size: 13px; 
+      font-weight: 700; 
+      color: var(--ink);
+      margin-bottom: 2px;
+      transition: color 0.3s ease;
+    }
+
+    /* Efeitos de Hover quando o usuário passar o mouse no autor */
+    .testimonial-link:hover .author-avatar {
+      border-color: var(--accent); /* Acende uma borda laranja ao redor da foto */
+    }
+    .testimonial-link:hover .author-name {
+      color: var(--accent); /* O nome também fica laranja indicando que é clicável */
+    }
 </style>
 
 <div class="wrap">
@@ -1461,7 +1629,8 @@ requestAnimationFrame(frame);
           <li class="active"><span class="feat-dot"></span>Inglês e espanhol intermediário</li>
           <li class="active"><span class="feat-dot"></span>Trilhas para viagens, estudos, gramática, etc</li>
           <li class="active"><span class="feat-dot"></span>Novas trilhas toda semana</li>
-          <li class="active"><span class="feat-dot"></span>2 Trilhas criadas com IA por dia — até 2h de conteúdo novo diariamente</li>
+          <li class="active"><span class="feat-dot"></span>1 Trilhas criadas com IA por dia</li>
+		   <li class="active"><span class="feat-dot"></span>Até 1h de conteúdo novo diariamente com IA</li>		   
           <li class="active"><span class="feat-dot"></span>Salve até 10 trilhas na nuvem</li>
           <li class="active"><span class="feat-dot"></span>Treine quantas vezes quiser</li>
         </ul>
@@ -1481,6 +1650,7 @@ requestAnimationFrame(frame);
 		  <li class="active"><span class="feat-dot"></span>Inglês e Espanhol Avançado</li>
           <li class="active"><span class="feat-dot"></span>Trilhas PREMIUM exclusivas toda semana</li>
 		   <li class="active"><span class="feat-dot"></span>5 Trilhas criadas com IA por dia</li>
+		   <li class="active"><span class="feat-dot"></span>Até 5h de conteúdo novo diariamente com IA</li>
 		  <li class="active"><span class="feat-dot"></span>Trilhas mais longas</li>
           <li class="active"><span class="feat-dot"></span>Salve até 30 trilhas na nuvem</li>
 
@@ -1547,11 +1717,13 @@ requestAnimationFrame(frame);
           </div>
           <p class="testimonial-quote">Em 3 semanas de uso diário com o tema Business, consegui conduzir minha primeira reunião em inglês sem travar. A abordagem por contexto faz toda diferença.</p>
           <div class="testimonial-author">
-            <div class="author-avatar">MC</div>
-            <div>
-              <div class="author-name">Mariana Costa</div>
-              <div class="author-role">Gerente de Projetos, São Paulo</div>
-            </div>
+            <a href="#" target="_blank" rel="noopener noreferrer" class="testimonial-link">
+              <img src="files/images/depo2.jfif" alt="Mariana Costa" class="author-avatar">
+              <div>
+                <div class="author-name">Mariana Costa</div>
+                <div class="author-role">Gerente de Projetos, São Paulo</div>
+              </div>
+            </a>
           </div>
         </div>
 
@@ -1561,11 +1733,13 @@ requestAnimationFrame(frame);
           </div>
           <p class="testimonial-quote">Testei dezenas de apps. O EWC é o único que não me fez sentir que estava estudando. O quiz e o jogo de matching tornam tudo absurdamente fluido.</p>
           <div class="testimonial-author">
-            <div class="author-avatar" style="background:#2563EB;">RF</div>
-            <div>
-              <div class="author-name">Rafael Ferreira</div>
-              <div class="author-role">Desenvolvedor, Recife</div>
-            </div>
+            <a href="#" target="_blank" rel="noopener noreferrer" class="testimonial-link">
+              <img src="files/images/depo1.webp" alt="Rafael Ferreira" class="author-avatar">
+              <div>
+                <div class="author-name">Rafael Ferreira</div>
+                <div class="author-role">Desenvolvedor, Recife</div>
+              </div>
+            </a>
           </div>
         </div>
 
@@ -1575,34 +1749,65 @@ requestAnimationFrame(frame);
           </div>
           <p class="testimonial-quote">Usei o módulo de Travel antes da minha viagem aos EUA. Cheguei no aeroporto sabendo exatamente o que falar em cada situação. Impagável.</p>
           <div class="testimonial-author">
-            <div class="author-avatar" style="background:#0D9488;">JS</div>
-            <div>
-              <div class="author-name">Juliana Santos</div>
-              <div class="author-role">Professora, Belo Horizonte</div>
-            </div>
+            <a href="#" target="_blank" rel="noopener noreferrer" class="testimonial-link">
+              <img src="files/images/depo3.avif" alt="Juliana Santos" class="author-avatar">
+              <div>
+                <div class="author-name">Juliana Santos</div>
+                <div class="author-role">Professora, Belo Horizonte</div>
+              </div>
+            </a>
           </div>
+        </div>
+
+      </div>
+  </section>
+  
+  
+<!-- SOBRE -->
+  <section id="sobre">
+    <div class="sobre-section">
+      <div class="sobre-inner">
+
+        <div class="sobre-left">
+          <span class="sobre-badge">Sobre o projeto</span>
+          <h2 class="sobre-title">Nascido na interseção entre a <em>IA acadêmica da UFF</em> e o ecossistema <em>IA PRO</em></h2>
+          <p class="sobre-subtitle">Pesquisa de ponta. Resultado prático. Sem enrolação.</p>
+          <div class="sobre-links">
+            <a href="https://ia.pro.br" target="_blank" rel="noopener noreferrer" class="sobre-link">ia.pro.br</a>
+            <a href="https://maiquelgomes.com.br" target="_blank" rel="noopener noreferrer" class="sobre-link">maiquelgomes.com.br</a>
+            <a href="https://ia.bio.br" target="_blank" rel="noopener noreferrer" class="sobre-link">ia.bio.br</a>
+            <a href="https://traineai.com.br" target="_blank" rel="noopener noreferrer" class="sobre-link">traineai.com.br</a>
+          </div>
+		  <div class="sobre-foto-wrapper">
+            <img src="files/images/maiquel.webp" alt="Maiquel Gomes" class="sobre-foto">
+          </div>
+        </div>
+
+        <div class="sobre-right">
+          <p class="sobre-text">
+             O <a href="https://ewc.com.br" target="_blank" class="sobre-inline-link">English Web Course (EWC)</a> surgiu como um projeto prático de aplicação de Inteligência Artificial dentro do ecossistema <a href="https://ia.pro.br" target="_blank" class="sobre-inline-link">IA PRO</a> e dos cursos de extensão da Pós-Graduação em Computação da <a href="https://www.ic.uff.br" target="_blank" class="sobre-inline-link">Universidade Federal Fluminense (UFF)</a>.
+          </p>
+          <p class="sobre-text">
+            Desenvolvido no contexto do <a href="https://ppgad.uff.br/laboratorio-de-gestao-da-inovacao-tecnologia-e-sustentabilidade-litsuff/" target="_blank" class="sobre-inline-link">Laboratório de Inovação, Tecnologia e Sustentabilidade (LITS/UFF)</a> e do <a href="https://gtia.uff.br" target="_blank" class="sobre-inline-link">Grupo de Trabalho em IA da UFF </a>, o <a href="https://ewc.com.br" target="_blank" class="sobre-inline-link"> EWC </a> une pesquisa acadêmica de ponta com a realidade do profissional brasileiro que precisa de inglês — e espanhol — para crescer na carreira.
+          </p>
+          <p class="sobre-text">
+            Aqui o foco é claro: <a href="https://app.ewc.com.br" target="_blank" class="sobre-inline-link">inglês é o nosso forte.</a> Trilhas completas do básico ao avançado com geração ilimitada de conteúdo por IA (Google AI). O espanhol funciona como complemento poderoso, com trilhas do básico ao intermediário para quem precisa de um segundo idioma profissional.
+          </p>
+          <p class="sobre-text">
+            Sem aulas chatas, sem tradução mecânica. Apenas contexto real, prática diária e resultado rápido — exatamente como aprendemos a construir produtos de IA no IA PRO e nos laboratórios da UFF.
+          </p>
+
+          <div class="sobre-divider"></div>
+
+          <div class="sobre-autor-label">Criado por</div>
+          <p class="sobre-autor-bio">
+            <a href="https://maiquelgomes.com.br" target="_blank" class="sobre-inline-link">Maiquel Gomes</a> — Cientista Atuarial pela <a href="https://www.uff.br/curso/ciencias-atuariais/" target="_blank" class="sobre-inline-link">Universidade Federal Fluminense (UFF)</a>; MBA em Marketing e Mídias Digitais; mestrando em IA &amp; Engenharia da Computação no <a href="https://www.ic.uff.br" target="_blank" class="sobre-inline-link">Instituto de Computação da UFF </a>(nota máxima no CAPES); professor da <a href="https://www.extensao.uff.br/inscricao/?id=11135" target="_blank" class="sobre-inline-link">Escola de Formação Executiva da UFF </a> e especialista em Inteligência Artificial. Atua como professor, pesquisador e desenvolvedor de soluções inovadoras que unem Estatística, IA generativa, Engenharia de Software e Negócios. Autor de livro, artigos, ferramentas de IA e projetos de impacto em tecnologia, ensino e pesquisa.
+          </p>
         </div>
 
       </div>
     </div>
   </section>
-  
-  
-  
-  
-  
-
-
-
-
-
-
-
-
-
-
-
-
 
 
   <!-- FAQ -->
@@ -1714,6 +1919,7 @@ requestAnimationFrame(frame);
       <li><a href="#precos">Planos</a></li>
       <li><a href="#depoimentos">Depoimentos</a></li>
       <li><a href="#faq">FAQ</a></li>
+      <li><a href="#sobre">Sobre</a></li>
       <li><a href="https://app.ewc.com.br" target="_blank" rel="noopener noreferrer">Entrar</a></li>
 	  <li><a href="https://ia.pro.br" target="_blank" rel="noopener noreferrer">IA PRO</a></li>
       <li><a href="https://wa.me/5521976950954?text=Olá%2C%20quero%20contratar%20um%20plano%20da%20EWC" target="_blank">Contato</a></li>
