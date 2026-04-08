@@ -1629,7 +1629,7 @@ requestAnimationFrame(frame);
           <li class="active"><span class="feat-dot"></span>Inglês e espanhol intermediário</li>
           <li class="active"><span class="feat-dot"></span>Trilhas para viagens, estudos, gramática, etc</li>
           <li class="active"><span class="feat-dot"></span>Novas trilhas toda semana</li>
-          <li class="active"><span class="feat-dot"></span>1 Trilhas criadas com IA por dia</li>
+          <li class="active"><span class="feat-dot"></span>1 Trilha criadas com IA por dia</li>
 		   <li class="active"><span class="feat-dot"></span>Até 1h de conteúdo novo diariamente com IA</li>		   
           <li class="active"><span class="feat-dot"></span>Salve até 10 trilhas na nuvem</li>
           <li class="active"><span class="feat-dot"></span>Treine quantas vezes quiser</li>
@@ -1981,6 +1981,200 @@ requestAnimationFrame(frame);
         backBtn.classList.add('visible');
       } else {
         backBtn.classList.remove('visible');
+      }
+    });
+  </script>
+  <canvas id="constellation-canvas" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; pointer-events: none; opacity: 0.6;"></canvas>
+
+  <script>
+    const canvas = document.getElementById('constellation-canvas');
+    const ctx = canvas.getContext('2d');
+    let W, H, nodes;
+    let animationFrameId; // Controle para ligar/desligar a animação
+    
+    let mouse = {x: -1000, y: -1000, px: -1000, py: -1000, active: false};
+
+    const COUNT = 120; 
+    const MAX_DIST = 200; 
+    const CONNECT_DIST = 150; 
+    const ATTRACT = 0.025; 
+    const DAMP = 0.93; 
+    const SPEED = 0.35; 
+
+    // Função que define o que é "Desktop" (telas maiores que 900px)
+    function isDesktop() {
+      return window.innerWidth > 900;
+    }
+
+    function resize() {
+      W = canvas.width = window.innerWidth;
+      H = canvas.height = window.innerHeight;
+      
+      // Se for celular, esconde o canvas e para a animação para economizar bateria
+      if (!isDesktop()) {
+        canvas.style.display = 'none';
+        if (animationFrameId) cancelAnimationFrame(animationFrameId);
+        return;
+      }
+      
+      // Se for desktop, mostra o canvas e calcula os pontos
+      canvas.style.display = 'block';
+      init();
+    }
+
+    function init() {
+      nodes = [];
+      for(let i = 0; i < COUNT; i++){
+        const angle = Math.random() * Math.PI * 2;
+        const spd = SPEED * (0.4 + Math.random() * 0.6);
+        nodes.push({
+          x: Math.random() * W,
+          y: Math.random() * H,
+          vx: Math.cos(angle) * spd,
+          vy: Math.sin(angle) * spd,
+          r: 1.5,
+          immunity: 0 
+        });
+      }
+    }
+
+    function draw() {
+      // Trava de segurança extra
+      if (!isDesktop()) return;
+
+      ctx.clearRect(0, 0, W, H);
+
+      const lineColor = 'rgba(240, 237, 232, '; 
+      const nodeColor = 'rgba(232, 82, 26, 0.8)'; 
+      const hoverLineColor = 'rgba(232, 82, 26, ';
+
+      // 1. EXPLOSÃO (O SOLAVANCO DO MOUSE)
+      let mouseSpeed = Math.sqrt(Math.pow(mouse.x - mouse.px, 2) + Math.pow(mouse.y - mouse.py, 2));
+
+      if (mouseSpeed > 30 && mouse.active) {
+        for(let i = 0; i < nodes.length; i++) {
+          const n = nodes[i];
+          const dx = n.x - mouse.px;
+          const dy = n.y - mouse.py;
+          const dist = Math.sqrt(dx*dx + dy*dy);
+
+          if (dist < MAX_DIST) {
+            const angle = Math.atan2(dy, dx);
+            const force = (MAX_DIST - dist) / MAX_DIST; 
+            
+            n.vx += Math.cos(angle) * (15 + force * 15);
+            n.vy += Math.sin(angle) * (15 + force * 15);
+            
+            n.immunity = 50; 
+          }
+        }
+      }
+
+      mouse.px = mouse.x;
+      mouse.py = mouse.y;
+
+      // 2. FÍSICA E ATRAÇÃO
+      for(let i = 0; i < nodes.length; i++){
+        const n = nodes[i];
+        const dx = mouse.x - n.x;
+        const dy = mouse.y - n.y;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+
+        if (n.immunity > 0) n.immunity--;
+
+        if(mouse.active && dist < MAX_DIST && n.immunity <= 0){
+          const f = Math.pow(1 - dist/MAX_DIST, 2) * ATTRACT;
+          n.vx += dx * f;
+          n.vy += dy * f;
+        }
+
+        n.vx *= DAMP;
+        n.vy *= DAMP;
+
+        const spd = Math.sqrt(n.vx*n.vx + n.vy*n.vy);
+        const minSpd = SPEED * 0.35;
+        if(spd < minSpd && spd > 0.0001){
+          n.vx = (n.vx/spd)*minSpd;
+          n.vy = (n.vy/spd)*minSpd;
+        }
+
+        n.x += n.vx;
+        n.y += n.vy;
+
+        if(n.x < 0){ n.x=0; n.vx=Math.abs(n.vx); }
+        if(n.x > W){ n.x=W; n.vx=-Math.abs(n.vx); }
+        if(n.y < 0){ n.y=0; n.vy=Math.abs(n.vy); }
+        if(n.y > H){ n.y=H; n.vy=-Math.abs(n.vy); }
+      }
+
+      // 3. DESENHO DAS LINHAS
+      for(let i = 0; i < nodes.length; i++){
+        for(let j = i+1; j < nodes.length; j++){
+          const a = nodes[i], b = nodes[j];
+          const dx = b.x-a.x, dy = b.y-a.y;
+          const d = Math.sqrt(dx*dx+dy*dy);
+          
+          if(d < CONNECT_DIST){
+            const alpha = (1 - d/CONNECT_DIST) * 0.3; 
+            
+            const distToMouse = Math.sqrt(Math.pow(mouse.x - a.x, 2) + Math.pow(mouse.y - a.y, 2));
+            if (mouse.active && distToMouse < MAX_DIST && a.immunity <= 0 && b.immunity <= 0) {
+              ctx.strokeStyle = hoverLineColor + alpha + ')';
+              ctx.lineWidth = 1.2;
+            } else {
+              ctx.strokeStyle = lineColor + alpha + ')';
+              ctx.lineWidth = 0.8;
+            }
+
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      // 4. DESENHO DOS PONTOS
+      ctx.fillStyle = nodeColor;
+      for(const n of nodes){
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, n.r, 0, Math.PI*2);
+        ctx.fill();
+      }
+
+      animationFrameId = requestAnimationFrame(draw);
+    }
+
+    // Só inicia a animação e os cálculos se estiver no Desktop
+    if (isDesktop()) {
+      resize();
+      draw();
+    }
+
+    // Eventos de Mouse
+    window.addEventListener('mousemove', e => {
+      if (!isDesktop()) return; // Ignora se for mobile
+      if (!mouse.active) {
+        mouse.px = e.clientX;
+        mouse.py = e.clientY;
+      }
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+      mouse.active = true;
+    });
+
+    window.addEventListener('mouseleave', () => {
+      if (!isDesktop()) return;
+      mouse.active = false;
+      setTimeout(() => { mouse.x = -1000; mouse.y = -1000; }, 50);
+    });
+
+    // Se o usuário virar o tablet ou redimensionar a tela
+    window.addEventListener('resize', () => {
+      resize();
+      // Se ele aumentou a tela para o tamanho desktop, volta a animar
+      if (isDesktop() && !animationFrameId) {
+        draw();
       }
     });
   </script>
