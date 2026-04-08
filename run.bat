@@ -1,5 +1,5 @@
 @echo off
-set msg=fundo com efeitos no final da pagina fisica de particulas
+set msg=correcao de s em trilhas
 for /f %%i in ('powershell -Command "Get-Date -Format yyyy-MM-dd_HH-mm-ss"') do set dt=%%i
 
 C:\msys64\usr\bin\bash.exe -lc "cd /home/Win/git/ewcsite/ewcsite && git add . && git commit -m '%msg% %dt%' && git push"
