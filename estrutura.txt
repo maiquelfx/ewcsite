@@ -1,0 +1,28 @@
+ewcsite
+├── .gitignore
+├── estrutura.txt
+├── favicon.ico
+├── files
+│   └── images
+│       ├── 1.webp
+│       ├── 2.webp
+│       ├── 3.webp
+│       ├── 4.webp
+│       ├── 5.webp
+│       ├── 6.webp
+│       ├── apple-touch-icon.png
+│       ├── depo1.webp
+│       ├── depo2.jfif
+│       ├── depo3.avif
+│       ├── ela3.webp
+│       ├── favicon.ico
+│       ├── favicon.svg
+│       ├── maiquel.webp
+│       ├── maiquel2.webp
+│       └── og-image.jpg
+├── index.html
+├── index2.html
+├── index3.html
+├── info.txt
+├── run.bat
+└── run_files.py
