@@ -1337,6 +1337,18 @@ canvas.bc{position:absolute;inset:-3px;width:calc(100% + 6px);height:calc(100% +
     .testimonial-link:hover .author-name {
       color: var(--accent); /* O nome também fica laranja indicando que é clicável */
     }
+	.price-btn-yellow {
+	  background: #FFD700;
+	  color: #000; /* Texto preto para legibilidade máxima */
+	  font-weight: 800;
+	  transition: all 0.3s ease;
+	}
+
+	.price-btn-yellow:hover {
+	  background: #FFE44D;
+	  transform: translateY(-2px);
+	  box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4);
+	}
 </style>
 
 <div class="wrap">
@@ -1626,8 +1638,11 @@ requestAnimationFrame(frame);
       <div class="price-card">
         <div class="price-name">Scholar</div>
         <div class="price-old">R$ 39,90</div>
-        <div class="price-value">R$ 19,90</div>
-        <div class="price-period">por mês · oferta de lançamento</div>
+        <div class="price-value" style="color: #A78BFA;">R$ 19,90</div>
+        <div class="price-period">
+          por mês · oferta de lançamento<br>
+          <strong style="color: var(--ink); font-size: 11px; letter-spacing: 0.05em;">Faturado R$ 238,80 / ano</strong>
+        </div>
         <div class="price-divider"></div>
         <ul class="price-features">
           <li class="active"><span class="feat-dot"></span>Tudo do Free</li>
@@ -1646,16 +1661,18 @@ requestAnimationFrame(frame);
       <div class="price-card popular">
         <div class="popular-badge">Mais escolhido</div>
         <div class="price-name">PRO</div>
-        <div class="price-old">R$ 79,90</div>
-        <div class="price-value">R$ 49,90</div>
-        <div class="price-period">por mês · oferta de lançamento</div>
+        <div class="price-value" style="color: #FFD700; text-shadow: 0 0 15px rgba(255, 215, 0, 0.3);">R$ 49,90</div>
+        <div class="price-period">
+          por mês · oferta de lançamento<br>
+          <strong style="color: var(--ink); font-size: 11px; letter-spacing: 0.05em;">Faturado R$ 598,80 / ano</strong>
+        </div>
         <div class="price-divider"></div>
         <ul class="price-features">
           <li class="active"><span class="feat-dot"></span>Tudo do Scholar</li>
 		  <li class="active"><span class="feat-dot"></span>Inglês e Espanhol Avançado</li>
           <li class="active"><span class="feat-dot"></span>Trilhas PREMIUM exclusivas toda semana</li>
-		   <li class="active"><span class="feat-dot"></span>5 Trilhas criadas com IA por dia</li>
-		   <li class="active"><span class="feat-dot"></span>Até 5h de conteúdo novo diariamente com IA</li>
+		   <li class="active"><span class="feat-dot"></span>4 Trilhas criadas com IA por dia</li>
+		   <li class="active"><span class="feat-dot"></span>Até 4h de conteúdo novo diariamente com IA</li>
 		  <li class="active"><span class="feat-dot"></span>Trilhas mais longas</li>
           <li class="active"><span class="feat-dot"></span>Salve até 30 trilhas na nuvem</li>
 
@@ -1663,7 +1680,7 @@ requestAnimationFrame(frame);
           <li class="active"><span class="feat-dot"></span>Acesso antecipado a novos recursos</li>
           <li class="active"><span class="feat-dot"></span>Suporte prioritário via WhatsApp</li>
         </ul>
-        <button class="price-btn price-btn-solid" onclick="window.open('https://app.ewc.com.br', '_blank')">Quero o PRO</button>
+        <button class="price-btn price-btn-yellow" onclick="window.open('https://app.ewc.com.br', '_blank')">Quero o PRO</button>
       </div>
 
       <!-- ENTERPRISE -->
