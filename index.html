@@ -2200,5 +2200,156 @@ requestAnimationFrame(frame);
       }
     });
   </script>
+  <!-- ========================================== -->
+<!-- AVISO DE COOKIES EWC (LGPD)                -->
+<!-- ========================================== -->
+<style>
+  .ewc-cookie-banner {
+    position: fixed;
+    bottom: 24px;
+    left: 24px;
+    max-width: 350px;
+    background: #ffffff;
+    border: 1px solid #E2E8F0;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+    padding: 24px;
+    border-radius: 16px;
+    font-family: 'Inter', 'Segoe UI', sans-serif; /* Adapte para a fonte do seu site */
+    z-index: 999999;
+    display: none;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  .ewc-cookie-banner.show {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .ewc-cookie-title {
+    font-size: 16px;
+    font-weight: 800;
+    color: #0F172A;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .ewc-cookie-text {
+    font-size: 13px;
+    color: #64748B;
+    line-height: 1.5;
+    margin-bottom: 20px;
+  }
+  .ewc-cookie-text a {
+    color: #E8521A; /* Laranja da sua marca */
+    text-decoration: underline;
+    font-weight: 600;
+  }
+  .ewc-cookie-buttons {
+    display: flex;
+    gap: 12px;
+  }
+  .ewc-btn-cookie {
+    flex: 1;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .ewc-btn-accept {
+    background: #E8521A;
+    color: #ffffff;
+  }
+  .ewc-btn-accept:hover {
+    background: #D04513;
+    transform: translateY(-1px);
+  }
+  .ewc-btn-reject {
+    background: #F8FAFC;
+    color: #475569;
+    border: 1px solid #E2E8F0;
+  }
+  .ewc-btn-reject:hover {
+    background: #F1F5F9;
+  }
+</style>
+
+<div id="ewc-cookie-banner" class="ewc-cookie-banner">
+  <div class="ewc-cookie-title">🍪 Nós usamos cookies</div>
+  <div class="ewc-cookie-text">
+   Utilizamos cookies para analisar o tráfego, melhorar sua experiência e personalizar anúncios. Ao continuar navegando, você concorda com a nossa <a href="privacidade.html" target="_blank">Política de Privacidade</a>.
+  </div>
+  <div class="ewc-cookie-buttons">
+    <button id="ewc-reject-cookies" class="ewc-btn-cookie ewc-btn-reject">Apenas Essenciais</button>
+    <button id="ewc-accept-cookies" class="ewc-btn-cookie ewc-btn-accept">Aceitar Tudo</button>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const banner = document.getElementById("ewc-cookie-banner");
+    const btnAccept = document.getElementById("ewc-accept-cookies");
+    const btnReject = document.getElementById("ewc-reject-cookies");
+    
+    // Verifica no navegador se o usuário já respondeu antes
+    const consent = localStorage.getItem("ewc_cookie_consent");
+    
+    if (!consent) {
+      // Se nunca respondeu, mostra o banner flutuante com um pequeno atraso (1.5s)
+      setTimeout(() => {
+        banner.style.display = "block";
+        // Pequeno truque para a animação CSS funcionar
+        setTimeout(() => banner.classList.add("show"), 50);
+      }, 1500);
+    } else if (consent === "accepted") {
+      // Se ele já tinha aceitado em outra visita, carrega os scripts de marketing em silêncio
+      loadTrackingScripts();
+    }
+
+    // Ação do botão ACEITAR
+    btnAccept.addEventListener("click", function() {
+      localStorage.setItem("ewc_cookie_consent", "accepted");
+      hideBanner();
+      loadTrackingScripts(); // Dispara o Google/Facebook na hora!
+    });
+
+    // Ação do botão RECUSAR
+    btnReject.addEventListener("click", function() {
+      localStorage.setItem("ewc_cookie_consent", "rejected");
+      hideBanner();
+      // Não carrega nada, respeitando a LGPD
+    });
+
+    function hideBanner() {
+      banner.classList.remove("show");
+      setTimeout(() => banner.style.display = "none", 400); // Aguarda a animação sumir
+    }
+
+    // ==========================================
+    // SEUS SCRIPTS DE MARKETING VÊM AQUI
+    // ==========================================
+    function loadTrackingScripts() {
+      // Evita carregar duas vezes na mesma página
+      if (window.trackingLoaded) return; 
+      window.trackingLoaded = true;
+
+      console.log("Consentimento dado. Carregando Pixel e Analytics...");
+
+      /* 
+        COLE O SCRIPT DO SEU PIXEL DO FACEBOOK AQUI 
+        (Basta remover as tags <script> do código que o Facebook te der e colar o Javascript puro aqui dentro)
+      */
+
+      /* 
+        COLE O SCRIPT DO GOOGLE ANALYTICS AQUI
+      */
+    }
+  });
+</script>
+<!-- ========================================== -->
 </body>
 </html>
