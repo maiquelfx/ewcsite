@@ -849,6 +849,10 @@
         padding: 8px 0 16px;
         border-bottom: 1px solid var(--line);
         z-index: 99;
+		.hero-flag {
+		width: 80px; /* Reduz o tamanho em tablets */
+		opacity: 0.15; /* Deixa bem transparente para não atrapalhar a leitura */
+	  }
       }
       .nav-links.open { display: flex; }
       .nav-links li a {
@@ -880,6 +884,9 @@
       .stat-num { font-size: 22px; letter-spacing: -0.02em; }
       .stat-label { font-size: 10px; }
       .stat { padding: 20px 12px; }
+	  .hero-flag {
+		display: none; /* Oculta as bandeiras em celulares para manter o visual limpo */
+	  }
     }
 
     .price-btn-whatsapp {
@@ -1043,6 +1050,31 @@
       .sobre-inner { grid-template-columns: 1fr; gap: 40px; }
       .sobre-section { padding: 80px 20px; }
     }
+	/* ── HERO FLAGS ── */
+	.hero-flag {
+	  position: absolute;
+	  top: 50%;
+	  transform: translateY(-50%);
+	  width: 140px; /* Ajuste o tamanho conforme necessário */
+	  opacity: 0.8; /* Leve transparência para integrar com o fundo escuro */
+	  z-index: 0; /* Garante que fiquem atrás do texto e dos botões */
+	  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5));
+	  transition: transform 0.4s ease, opacity 0.4s ease;
+	}
+
+	.flag-left {
+	  left: 5%;
+	}
+
+	.flag-right {
+	  right: 5%;
+	}
+
+	/* Efeito de flutuação ao passar o mouse (Opcional) */
+	.hero-flag:hover {
+	  transform: translateY(-50%) scale(1.05);
+	  opacity: 1;
+	}
   </style>
 </head>
 <body>
@@ -1069,17 +1101,19 @@
   <!-- HERO -->
   <section class="hero">
   <div class="hero-glow"></div>
+  
+  <img src="files/images/en.webp" alt="English" class="hero-flag flag-left">
+  <img src="files/images/es.webp" alt="Español" class="hero-flag flag-right">
+
   <div class="hero-tag">English Web Course — Aprendizado por contexto</div>
 
   <h1 class="hero-h1">
-    O inglês que<br>
-    você <em>realmente <br>vai usar.</em><br>
-    
+    Aprenda inglês <br><em>&</em> espanhol<br>
+    <em>no tema que você  <br>precisa agora.</em><br>
   </h1>
 
   <p class="hero-sub">
     Trilhas de vocabulário, palavras, frases, expressões, pronúncia, imagens, áudios, games, quiz e muito mais conteúdos gerados por IA — <strong>no tema que você precisa agora, </strong>para você treinar quantas vezes quiser.<br>
-    
   </p>
 
   <div class="hero-actions">
@@ -1095,7 +1129,7 @@
     <span>Scroll</span>
     <div class="scroll-line"></div>
   </div>
-  </section>
+</section>
 
    <!-- STATS -->
   <div class="stats">
@@ -1108,8 +1142,8 @@
       <div class="stat-label">Conteúdo personalizado gerado ao vivo</div>
     </div>
     <div class="stat">
-      <div class="stat-num">Google <span>AI</span></div>
-      <div class="stat-label">Integrado com IA de ponta.</div>
+      <div class="stat-num">+50 <span>Trilhas prontas</span></div>
+      <div class="stat-label">Com geração nova toda semana</div>
     </div>
     <div class="stat">
       <div class="stat-num">Multi<span>modal</span></div>
@@ -1659,7 +1693,7 @@ requestAnimationFrame(frame);
 
       <!-- PRO -->
       <div class="price-card popular">
-        <div class="popular-badge">Mais escolhido</div>
+        <div class="popular-badge">+ Completo</div>
         <div class="price-name">PRO</div>
         <div class="price-value" style="color: #FFD700; text-shadow: 0 0 15px rgba(255, 215, 0, 0.3);">R$ 49,90</div>
         <div class="price-period">
