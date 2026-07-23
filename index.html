@@ -1075,6 +1075,63 @@
 	  transform: translateY(-50%) scale(1.05);
 	  opacity: 1;
 	}
+	/* ── PARCEIROS E INSTITUIÇÕES (CARROSSEL) ── */
+.partners-section {
+  padding: 32px 0;
+  border-bottom: 1px solid var(--line);
+  background: rgba(4,4,10,0.6);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.partners-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink2);
+  margin-bottom: 24px;
+}
+
+.partners-marquee {
+  width: 100%;
+  max-width: 1200px;
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  /* Máscara de fade nas bordas para as logos sumirem suavemente */
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.partners-track {
+  display: inline-block;
+  white-space: nowrap;
+  animation: scrollLogos 25s linear infinite;
+}
+
+.partners-track img {
+  height: 45px; /* Altura padrão para todas as logos */
+  width: auto;
+  margin: 0 40px;
+  vertical-align: middle;
+  opacity: 0.6;
+  /* Esse filtro ajuda a "dourar" levemente a imagem se ela for branca, 
+     mas o ideal é subir o PNG já preenchido com a cor de ouro */
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.partners-track img:hover {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+@keyframes scrollLogos {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
   </style>
 </head>
 <body>
@@ -1147,12 +1204,30 @@
     </div>
     <div class="stat">
       <div class="stat-num">Multi<span>modal</span></div>
-      <div class="stat-label">Ferramentas web de última geração</div>
+        <div class="stat-label">Ferramentas web de última geração</div>
+      </div>
     </div>
-  </div>
 
-  <!-- FEATURES -->
-  <section class="section" id="como-funciona">
+    <section class="partners-section">
+      <div class="partners-label">Apoio Institucional e Parcerias</div>
+      <div class="partners-marquee">
+        <div class="partners-track">
+          <img src="files/images/ia-pro.png" alt="IA PRO">
+          <!--<img src="files/images/ic.png" alt="Instituto de Computação da UFF">-->
+          <img src="files/images/lits.png" alt="LITS">
+          <img src="files/images/uff.png" alt="Universidade federal Fluminense">
+		  <img src="files/images/ia-bio.png" alt="IA BIOTECTNOLOGIA">
+          
+          <img src="files/images/ia-pro.png" alt="IA PRO">
+          <!--<img src="files/images/ic.png" alt="Instituto de Computação da UFF">-->
+          <img src="files/images/lits.png" alt="LITS">
+          <img src="files/images/uff.png" alt="Universidade federal Fluminense">
+		  <img src="files/images/ia-bio.png" alt="IA BIOTECTNOLOGIA">
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="como-funciona">
     
 	<div class="how-it-works">
   
