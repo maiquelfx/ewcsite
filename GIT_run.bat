@@ -1,5 +1,5 @@
 @echo off
-set msg= rastreamento - tentativa2
+set msg= links de rastreamento na pagina ewc em clicks
 for /f %%i in ('powershell -Command "Get-Date -Format yyyy-MM-dd_HH-mm-ss"') do set dt=%%i
 
 C:\msys64\usr\bin\bash.exe -lc "cd /home/Win/git/ewcsite/ewcsite && git add . && git commit -m '%msg% %dt%' && git push"
