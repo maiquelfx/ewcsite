@@ -2460,5 +2460,29 @@ requestAnimationFrame(frame);
   });
 </script>
 <!-- ========================================== -->
+<script>
+(function() {
+    // Altere para a URL onde você hospedou o track_post.php
+    const endpoint = &#39;https://ia.pro.br/tracker/track_post.php&#39;; 
+    
+    const payload = {
+        portal: window.location.hostname,
+        url: window.location.pathname,
+        titulo: document.title,
+        referrer: document.referrer
+    };
+
+    // sendBeacon é perfeito para analytics: é assíncrono e não atrasa o carregamento da página
+    if (navigator.sendBeacon) {
+        navigator.sendBeacon(endpoint, JSON.stringify(payload));
+    } else {
+        fetch(endpoint, {
+            method: &#39;POST&#39;,
+            body: JSON.stringify(payload),
+            headers: { &#39;Content-Type&#39;: &#39;application/json&#39; }
+        });
+    }
+})();
+</script>
 </body>
 </html>
