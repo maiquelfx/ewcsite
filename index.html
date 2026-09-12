@@ -401,7 +401,65 @@
   line-height: 1.6;
 }
 
-
+/* ── BILLING TOGGLE ── */
+.billing-toggle-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 32px;
+  margin-bottom: -16px;
+}
+.billing-toggle {
+  display: inline-flex;
+  background: var(--glass);
+  border: 1px solid var(--line);
+  border-radius: 99px;
+  padding: 4px;
+  position: relative;
+}
+.billing-btn {
+  background: transparent;
+  color: var(--ink2);
+  border: none;
+  padding: 10px 24px;
+  border-radius: 99px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 1;
+  position: relative;
+}
+.billing-btn.active {
+  color: #fff;
+}
+.billing-slider {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: 4px;
+  width: calc(50% - 4px);
+  background: var(--accent);
+  border-radius: 99px;
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 4px 12px rgba(232,82,26,0.3);
+}
+.is-annual .billing-slider {
+  transform: translateX(100%);
+}
+.discount-pill {
+  position: absolute;
+  top: -10px;
+  right: -15px;
+  background: #10B981;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 12px;
+  z-index: 2;
+  border: 2px solid var(--bg);
+}
     /* ── PRICING ── */
     .pricing-grid {
       display: grid;
@@ -1720,111 +1778,122 @@ requestAnimationFrame(frame);
     Escolha o acesso que faz sentido para o seu momento.
   </p>
 
-    <div class="pricing-grid">
+  <!-- NOVO: BOTÃO TOGGLE (MENSAL/ANUAL) -->
+  <div class="billing-toggle-wrapper">
+    <div class="billing-toggle is-annual" id="billing-toggle">
+      <div class="billing-slider"></div>
+      <button class="billing-btn" id="btn-monthly" onclick="setBilling('monthly')">Mensal</button>
+      <button class="billing-btn active" id="btn-annual" onclick="setBilling('annual')">
+        Anual
+        <span class="discount-pill">-50%</span>
+      </button>
+    </div>
+  </div>
 
-      <!-- FREE -->
-      <div class="price-card">
-        <div class="price-name">Free</div>
-        <div class="price-value">R$ 0</div>
-        <div class="price-period">Para sempre grátis</div>
-        <div class="price-divider"></div>
-        <ul class="price-features">
-          <li class="active"><span class="feat-dot"></span>Inglês e espanhol básico</li>
-          <li class="active"><span class="feat-dot"></span>Trilhas prontas gratuitas</li>
-          <li class="active"><span class="feat-dot"></span>Flashcards</li>
-          <li class="active"><span class="feat-dot"></span>Quiz</li>
-          <li class="active"><span class="feat-dot"></span>Games</li>
-          <li class="active"><span class="feat-dot"></span>Áudios nativos</li>
-          <li class="active"><span class="feat-dot"></span>Treino de pronúncia</li>
-          <li class="active"><span class="feat-dot"></span>Expressões</li>
-          <li class="active"><span class="feat-dot"></span>Tradução dinâmica</li>
-		  <li class="active"><span class="feat-dot"></span>Salve seu progresso</li>
-        </ul>
-        <button class="price-btn price-btn-amber" onclick="window.open('https://ia.pro.br/ads/click.php?id=appewc&origem=ewc&campanha=start_0rs', '_blank')">Começar grátis</button>
-      </div>
+  <div class="pricing-grid">
 
-      <!-- SCHOLAR -->
-      <div class="price-card">
-        <div class="price-name">Scholar</div>
-        <div class="price-old">R$ 39,90</div>
-        <div class="price-value" style="color: #A78BFA;">R$ 19,90</div>
-        <div class="price-period">
-          por mês · oferta de lançamento<br>
-          <strong style="color: var(--ink); font-size: 11px; letter-spacing: 0.05em;">Faturado R$ 238,80 / ano</strong>
-        </div>
-        <div class="price-divider"></div>
-        <ul class="price-features">
-          <li class="active"><span class="feat-dot"></span>Tudo do Free</li>
-          <li class="active"><span class="feat-dot"></span>Inglês e espanhol intermediário</li>
-          <li class="active"><span class="feat-dot"></span>Trilhas para viagens, estudos, gramática, etc</li>
-          <li class="active"><span class="feat-dot"></span>Novas trilhas toda semana</li>
-          <li class="active"><span class="feat-dot"></span>1 Trilha criada com IA por dia</li>
-		   <li class="active"><span class="feat-dot"></span>Até 1h de conteúdo novo diariamente com IA</li>		   
-          <li class="active"><span class="feat-dot"></span>Salve até 10 trilhas na nuvem</li>
-          <li class="active"><span class="feat-dot"></span>Treine quantas vezes quiser</li>
-        </ul>
-        <button class="price-btn price-btn-purple" onclick="window.open('https://ia.pro.br/ads/click.php?id=appewc&origem=ewc&campanha=assinar_Scholar', '_blank')">Assinar Scholar</button>
-      </div>
-
-      <!-- PRO -->
-      <div class="price-card popular">
-        <div class="popular-badge">+ Completo</div>
-        <div class="price-name">PRO</div>
-        <div class="price-value" style="color: #FFD700; text-shadow: 0 0 15px rgba(255, 215, 0, 0.3);">R$ 49,90</div>
-        <div class="price-period">
-          por mês · oferta de lançamento<br>
-          <strong style="color: var(--ink); font-size: 11px; letter-spacing: 0.05em;">Faturado R$ 598,80 / ano</strong>
-        </div>
-        <div class="price-divider"></div>
-        <ul class="price-features">
-          <li class="active"><span class="feat-dot"></span>Tudo do Scholar</li>
-		  <li class="active"><span class="feat-dot"></span>Inglês e Espanhol Avançado</li>
-          <li class="active"><span class="feat-dot"></span>Trilhas PREMIUM exclusivas toda semana</li>
-		   <li class="active"><span class="feat-dot"></span>4 Trilhas criadas com IA por dia</li>
-		   <li class="active"><span class="feat-dot"></span>Até 4h de conteúdo novo diariamente com IA</li>
-		  <li class="active"><span class="feat-dot"></span>Trilhas mais longas</li>
-          <li class="active"><span class="feat-dot"></span>Salve até 30 trilhas na nuvem</li>
-
-          <li class="active"><span class="feat-dot"></span>Expressões nativas e gírias</li>
-          <li class="active"><span class="feat-dot"></span>Acesso antecipado a novos recursos</li>
-          <li class="active"><span class="feat-dot"></span>Suporte prioritário via WhatsApp</li>
-        </ul>
-        <button class="price-btn price-btn-yellow" onclick="window.open('https://ia.pro.br/ads/click.php?id=appewc&origem=ewc&campanha=assinar_pro', '_blank')">Quero o PRO</button>
-      </div>
-
-      <!-- ENTERPRISE -->
-      <div class="price-card">
-        <div class="price-name">Enterprise</div>
-        <div class="price-value" style="font-size:28px;letter-spacing:-0.02em;line-height:1.2;">Para<br>Empresas</div>
-        <div class="price-period">sob consulta</div>
-        <div class="price-divider"></div>
-        <ul class="price-features">
-          <li class="active"><span class="feat-dot"></span>Tudo do PRO</li>
-          <li class="active"><span class="feat-dot"></span>Treinamentos sob demanda</li>
-          <li class="active"><span class="feat-dot"></span>Trilhas ajustadas ao seu negócio</li>
-          <li class="active"><span class="feat-dot"></span>Grupo de usuários</li>
-          <li class="active"><span class="feat-dot"></span>Acompanhamento de desempenho</li>
-          <li class="active"><span class="feat-dot"></span>Suporte humano prioritário</li>
-          <li class="active"><span class="feat-dot"></span>Acesso prioritário a novos recursos</li>
-        </ul>
-        <button class="price-btn price-btn-outline" onclick="window.location='mailto:maiquel@ia.pro.br'">Consultar valor</button>
-        <button class="price-btn price-btn-whatsapp" onclick="window.open('https://wa.me/5521976519534?text=Estou%20interessado%20nos%20cursos%20enterprise%20ajustados%20da%20EWC', '_blank')">
-          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.558 4.115 1.535 5.845L.057 23.492a.5.5 0 0 0 .614.635l5.807-1.525A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.686-.5-5.222-1.377l-.374-.217-3.876 1.018 1.034-3.774-.231-.389A9.96 9.96 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
-          WhatsApp
-        </button>
-      </div>
-
+    <!-- FREE -->
+    <div class="price-card">
+      <div class="price-name">Free</div>
+      <div class="price-value">R$ 0</div>
+      <div class="price-period">Para sempre grátis</div>
+      <div class="price-divider"></div>
+      <ul class="price-features">
+        <li class="active"><span class="feat-dot"></span>Inglês e espanhol básico</li>
+        <li class="active"><span class="feat-dot"></span>Trilhas prontas gratuitas</li>
+        <li class="active"><span class="feat-dot"></span>Flashcards</li>
+        <li class="active"><span class="feat-dot"></span>Quiz</li>
+        <li class="active"><span class="feat-dot"></span>Games</li>
+        <li class="active"><span class="feat-dot"></span>Áudios nativos</li>
+        <li class="active"><span class="feat-dot"></span>Treino de pronúncia</li>
+        <li class="active"><span class="feat-dot"></span>Expressões</li>
+        <li class="active"><span class="feat-dot"></span>Tradução dinâmica</li>
+        <li class="active"><span class="feat-dot"></span>Salve seu progresso</li>
+      </ul>
+      <button class="price-btn price-btn-amber" onclick="window.open('https://ia.pro.br/ads/click.php?id=appewc&origem=ewc&campanha=start_0rs', '_blank')">Começar grátis</button>
     </div>
 
-    <!-- NOTA ABAIXO DOS PLANOS -->
-    <p class="pricing-note">
-	<br><strong>Você precisa estar logado para poder comprar o plano.</strong>
-	<br><strong>As assinaturas são anuais, com desconto de 50%.</strong><br>
-	
-      Cada trilha tem aproximadamente <strong>1 hora de conteúdo</strong> — vocabulário, áudio, expressões, quiz e games incluídos.<br>     
-    </p>
+    <!-- SCHOLAR -->
+    <div class="price-card">
+      <div class="price-name">Scholar</div>
+      <div class="price-old" id="scholar-old">R$ 39,90</div>
+      <div class="price-value" style="color: #A78BFA;" id="scholar-price">R$ 19,90</div>
+      <div class="price-period">
+        por mês · <span id="scholar-promo">oferta de lançamento</span><br>
+        <strong style="color: var(--ink); font-size: 11px; letter-spacing: 0.05em;" id="scholar-desc">Faturado R$ 238,80 / ano</strong>
+      </div>
+      <div class="price-divider"></div>
+      <ul class="price-features">
+        <li class="active"><span class="feat-dot"></span>Tudo do Free</li>
+        <li class="active"><span class="feat-dot"></span>Inglês e espanhol intermediário</li>
+        <li class="active"><span class="feat-dot"></span>Trilhas para viagens, estudos, gramática, etc</li>
+        <li class="active"><span class="feat-dot"></span>Novas trilhas toda semana</li>
+        <li class="active"><span class="feat-dot"></span>1 Trilha criada com IA por dia</li>
+        <li class="active"><span class="feat-dot"></span>Até 1h de conteúdo novo diariamente com IA</li>       
+        <li class="active"><span class="feat-dot"></span>Salve até 10 trilhas na nuvem</li>
+        <li class="active"><span class="feat-dot"></span>Treine quantas vezes quiser</li>
+      </ul>
+      <button class="price-btn price-btn-purple" id="scholar-btn" onclick="window.open('https://ia.pro.br/ads/click.php?id=appewc&origem=ewc&campanha=assinar_Scholar', '_blank')">Assinar Scholar</button>
+    </div>
+
+    <!-- PRO -->
+    <div class="price-card popular">
+      <div class="popular-badge">+ Completo</div>
+      <div class="price-name">PRO</div>
+      <div class="price-old" id="pro-old" style="font-size: 14px; color: var(--ink2); text-decoration: line-through; opacity: 0.5; margin-bottom: 4px;">R$ 79,90</div>
+      <div class="price-value" style="color: #FFD700; text-shadow: 0 0 15px rgba(255, 215, 0, 0.3);" id="pro-price">R$ 49,90</div>
+      <div class="price-period">
+        por mês · <span id="pro-promo">oferta de lançamento</span><br>
+        <strong style="color: var(--ink); font-size: 11px; letter-spacing: 0.05em;" id="pro-desc">Faturado R$ 598,80 / ano</strong>
+      </div>
+      <div class="price-divider"></div>
+      <ul class="price-features">
+        <li class="active"><span class="feat-dot"></span>Tudo do Scholar</li>
+        <li class="active"><span class="feat-dot"></span>Inglês e Espanhol Avançado</li>
+        <li class="active"><span class="feat-dot"></span>Trilhas PREMIUM exclusivas toda semana</li>
+        <li class="active"><span class="feat-dot"></span>4 Trilhas criadas com IA por dia</li>
+        <li class="active"><span class="feat-dot"></span>Até 4h de conteúdo novo diariamente com IA</li>
+        <li class="active"><span class="feat-dot"></span>Trilhas mais longas</li>
+        <li class="active"><span class="feat-dot"></span>Salve até 30 trilhas na nuvem</li>
+        <li class="active"><span class="feat-dot"></span>Expressões nativas e gírias</li>
+        <li class="active"><span class="feat-dot"></span>Acesso antecipado a novos recursos</li>
+        <li class="active"><span class="feat-dot"></span>Suporte prioritário via WhatsApp</li>
+      </ul>
+      <button class="price-btn price-btn-yellow" id="pro-btn" onclick="window.open('https://ia.pro.br/ads/click.php?id=appewc&origem=ewc&campanha=assinar_pro', '_blank')">Quero o PRO</button>
+    </div>
+
+    <!-- ENTERPRISE -->
+    <div class="price-card">
+      <div class="price-name">Enterprise</div>
+      <div class="price-value" style="font-size:28px;letter-spacing:-0.02em;line-height:1.2;">Para<br>Empresas</div>
+      <div class="price-period">sob consulta</div>
+      <div class="price-divider"></div>
+      <ul class="price-features">
+        <li class="active"><span class="feat-dot"></span>Tudo do PRO</li>
+        <li class="active"><span class="feat-dot"></span>Treinamentos sob demanda</li>
+        <li class="active"><span class="feat-dot"></span>Trilhas ajustadas ao seu negócio</li>
+        <li class="active"><span class="feat-dot"></span>Grupo de usuários</li>
+        <li class="active"><span class="feat-dot"></span>Acompanhamento de desempenho</li>
+        <li class="active"><span class="feat-dot"></span>Suporte humano prioritário</li>
+        <li class="active"><span class="feat-dot"></span>Acesso prioritário a novos recursos</li>
+      </ul>
+      <button class="price-btn price-btn-outline" onclick="window.location='mailto:maiquel@ia.pro.br'">Consultar valor</button>
+      <button class="price-btn price-btn-whatsapp" onclick="window.open('https://wa.me/5521976519534?text=Estou%20interessado%20nos%20cursos%20enterprise%20ajustados%20da%20EWC', '_blank')">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.558 4.115 1.535 5.845L.057 23.492a.5.5 0 0 0 .614.635l5.807-1.525A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.686-.5-5.222-1.377l-.374-.217-3.876 1.018 1.034-3.774-.231-.389A9.96 9.96 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+        WhatsApp
+      </button>
+    </div>
 
   </div>
+
+  <!-- NOTA ABAIXO DOS PLANOS -->
+  <p class="pricing-note">
+    <br><strong>Você precisa estar logado para poder comprar o plano.</strong>
+    <br><strong id="billing-note-discount">As assinaturas são anuais, com desconto de 50%.</strong><br>
+    Cada trilha tem aproximadamente <strong>1 hora de conteúdo</strong> — vocabulário, áudio, expressões, quiz e games incluídos.<br>
+  </p>
+
+</div>
   
   
 
@@ -2483,6 +2552,76 @@ requestAnimationFrame(frame);
         });
     }
 })();
+</script>
+<script>
+function setBilling(cycle) {
+  const toggle = document.getElementById('billing-toggle');
+  const btnMonthly = document.getElementById('btn-monthly');
+  const btnAnnual = document.getElementById('btn-annual');
+
+  const scOld = document.getElementById('scholar-old');
+  const scPrice = document.getElementById('scholar-price');
+  const scDesc = document.getElementById('scholar-desc');
+  const scPromo = document.getElementById('scholar-promo');
+  const scBtn = document.getElementById('scholar-btn');
+
+  const proOld = document.getElementById('pro-old');
+  const proPrice = document.getElementById('pro-price');
+  const proDesc = document.getElementById('pro-desc');
+  const proPromo = document.getElementById('pro-promo');
+  const proBtn = document.getElementById('pro-btn');
+  
+  const noteDiscount = document.getElementById('billing-note-discount');
+
+  if (cycle === 'annual') {
+    // Muda a chave visual para a direita
+    toggle.classList.add('is-annual');
+    btnAnnual.classList.add('active');
+    btnMonthly.classList.remove('active');
+
+    // Preços do Scholar (Anual)
+    scOld.style.display = 'block';
+    scOld.innerText = 'R$ 39,90';
+    scPrice.innerText = 'R$ 19,90';
+    scPromo.style.display = 'inline';
+    scDesc.innerText = 'Faturado R$ 238,80 / ano';
+    scBtn.setAttribute('onclick', "window.open('https://ia.pro.br/ads/click.php?id=appewc&origem=ewc&campanha=assinar_Scholar', '_blank')");
+
+    // Preços do PRO (Anual)
+    proOld.style.display = 'block';
+    proOld.innerText = 'R$ 79,90';
+    proPrice.innerText = 'R$ 49,90';
+    proPromo.style.display = 'inline';
+    proDesc.innerText = 'Faturado R$ 598,80 / ano';
+    proBtn.setAttribute('onclick', "window.open('https://ia.pro.br/ads/click.php?id=appewc&origem=ewc&campanha=assinar_pro', '_blank')");
+    
+    // Altera a nota de rodapé
+    noteDiscount.innerText = 'As assinaturas são anuais, com desconto de 50%.';
+
+  } else {
+    // Muda a chave visual para a esquerda
+    toggle.classList.remove('is-annual');
+    btnMonthly.classList.add('active');
+    btnAnnual.classList.remove('active');
+
+    // Preços do Scholar (Mensal Cheio)
+    scOld.style.display = 'none';
+    scPrice.innerText = 'R$ 39,90';
+    scPromo.style.display = 'none';
+    scDesc.innerText = 'Faturado mensalmente';
+    scBtn.setAttribute('onclick', "window.open('https://ia.pro.br/ads/click.php?id=appewc&origem=ewc&campanha=assinar_Scholar_Mensal', '_blank')");
+
+    // Preços do PRO (Mensal Cheio)
+    proOld.style.display = 'none';
+    proPrice.innerText = 'R$ 89,90';
+    proPromo.style.display = 'none';
+    proDesc.innerText = 'Faturado mensalmente';
+    proBtn.setAttribute('onclick', "window.open('https://ia.pro.br/ads/click.php?id=appewc&origem=ewc&campanha=assinar_pro_Mensal', '_blank')");
+    
+    // Altera a nota de rodapé
+    noteDiscount.innerText = 'As assinaturas mensais podem ser canceladas a qualquer momento.';
+  }
+}
 </script>
 </body>
 </html>
